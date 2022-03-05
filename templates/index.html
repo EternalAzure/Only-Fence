@@ -5,58 +5,145 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/static/css/index.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial">
     </head>
     <body>
         <div class="container">
 
-            <section id="left" class="box">
-                <span>left</span>
+            <section id="left">
+                
+                <nav class="menu">
+                    <a class="menu-item big" href="/">
+                        <img src="/static/user.png">
+                        <span>
+                            
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/home.png">
+                        <span>
+                            Home
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/notifications.png">
+                        <span>
+                            Notifications
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/chat.png">
+                        <span>
+                            Messages
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/bookmark.png">
+                        <span>
+                            Bookmarks
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/list.png">
+                        <span>
+                            Lists
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/subs.png">
+                        <span>
+                            Subscriptions
+                        </span>
+                    </a>
+                    <a class="menu-item" href="/">
+                        <img src="/static/menu/card.png">
+                        <span>
+                            Add cart
+                        </span>
+                    </a>
+                    <a class="menu-item big" href="/">
+                        <img src="/static/menu/plus.png">
+                        <span>
+                            
+                        </span>
+                    </a>
+                </nav>
             </section>
 
-            <section id="middle" class="feed box">
+            <section id="middle" class="feed">
                 <div id="home" class="post">
                     HOME
                 </div>
                 <div id="form" class="post">
-                    form
-                </div>
-                <div class="post">
-                    <div class="header">
-                        header
-                    </div>
-                    <div class="content">
-                        content
-                    </div>
-                    <div class="footer">
+                    <form   class=""
+                            action="/publish" 
+                            method="POST" 
+                            enctype="multipart/form-data">
+                        <input id="text-field" type="text" placeholder="Compose new post...">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    </form>
+                    <div>
                         footer
                     </div>
                 </div>
                 <div class="post">
-                    <div class="header">
-                        header
+                    <div class="post-banner">
+                        <img src="/static/logo.png">
+                        <div style="margin-left: 0.5em;">
+                            <div class="box">
+                                <span>OnlyFens</span>
+                                <img src="/static/verified.png">
+                            </div>
+                            <span style="color: lightgray;">@onlyfens</span>
+                        </div>
                     </div>
                     <div class="content">
-                        content
+                        Post 1 <br>
+                        Are you a Marvel or DC fan? @shiaswordgirl gets into the history of the Marvel <br> 
+                        Comics and covers the fascinating journey the publishing company has taken to <br>
+                        become the successful powerhouse that they are today. <br>
+                        <br>
+                        For more historical facts from Shiaswordgirl watch OFTV: <br>
+                        of.tv/creators/shiaswordgirlonlyfans.com/shiaswordgirl / <br>
+                        <br>
+                        onlyfans.com/oftv <br>
                     </div>
-                    <div class="footer">
+                    <div class="post-banner">
                         footer
                     </div>
                 </div>
                 <div class="post">
-                    <div class="header">
-                        header
+                    <div class="post-banner">
+                        <img src="/static/logo.png">
+                        <div style="margin-left: 0.5em;">
+                            <div class="box">
+                                <span>OnlyFens</span>
+                                <img src="/static/verified.png">
+                            </div>
+                            <span style="color: lightgray;">@onlyfens</span>
+                        </div>
                     </div>
                     <div class="content">
-                        content
+                        Post 2 <br>
+                        Are you a Marvel or DC fan? @shiaswordgirl gets into the history of the Marvel <br> 
+                        Comics and covers the fascinating journey the publishing company has taken to <br>
+                        become the successful powerhouse that they are today. <br>
+                        <br>
+                        For more historical facts from Shiaswordgirl watch OFTV: <br>
+                        of.tv/creators/shiaswordgirlonlyfans.com/shiaswordgirl / <br>
+                        <br>
+                        onlyfans.com/oftv <br>
                     </div>
-                    <div class="footer">
+                    <div class="post-banner">
                         footer
                     </div>
                 </div>
             </section>
 
-            <section id="right" class="box">
-                <span>right</span>
+            <section id="right">
+                <div class="suggestions">
+                    <img src="/static/ehdotukset.png">
+                </div>
             </section>
             
         </div>
