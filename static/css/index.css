@@ -1,0 +1,59 @@
+body {
+    background-color: white;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+section {
+    flex: auto;
+}
+
+.form {
+    min-height: 6em;
+    width: 100%;
+    background-color: beige;
+}
+
+.post {
+    margin: 0.02em 0.01em;
+    background-color: white;
+    height: 5em;
+}
+    .header {
+        background-color: lightcoral;
+        height: 2em;
+    }
+
+    .content {
+
+    }
+
+    .footer {
+        background-color: lightcoral;
+        height: 1em;
+    }
+
+
+
+#left {
+    background-color: lightblue;
+}
+
+#middle {
+    
+}
+
+#right {
+    background-color: lightpink;
+}
