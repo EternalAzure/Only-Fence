@@ -1,7 +1,7 @@
 from os import getenv
 from app import app
 from flask_cors import CORS
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 import db
 
 #Lets client request data from static/index.js through API
@@ -14,7 +14,9 @@ def index():
 
 @app.route("/publish", methods=["POST"])
 def publish():
-    # TODO
+    text = request.form["text"]
+    image = request.files["file"]
+    db.publish(text, image)
     return redirect("/")
 
 @app.route("/logo", methods=["GET"])

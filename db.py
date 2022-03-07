@@ -11,12 +11,20 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
-def insert_post(a, b, c):
-    # TODO
-    sql = "INSERT INTO posts (a, b, c) VALUES (:a, :b, :c)"
-    db.session.execute(sql, {"a":a, "b":b, "c":c})
+def publish(text: str, image):
+    id = _insert_post(text)
+    _insert_image(image, id)
+
+def _insert_image(data, posts_id):
+    sql = "INSERT INTO images (data, posts_id) VALUES (:data, :posts_id)"
+    db.session.execute(sql, {"data":data, "posts_id":posts_id})
     db.session.commit()
-    pass
+
+def _insert_post(text: str):
+    sql = "INSERT INTO posts (text) VALUES (:text) RETURNING id"
+    resulting_id = db.session.execute(sql, {"text":text})
+    db.session.commit()
+    return resulting_id.fetchone()[0]
 
 def select_logo():
     sql = "SELECT data FROM images WHERE r_id=:id" # TODO just example query

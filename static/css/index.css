@@ -57,6 +57,10 @@ section {
         max-width: 3em;
     }
 
+    .menu-item:hover{
+        color: #007aff;
+    }
+
 #home {
     font-weight: bold;
     font-size: larger;
@@ -82,6 +86,9 @@ section {
         font-size: medium;
     }
 
+.footer-icon {
+    height: 1em;
+}
     
 
 .post {
@@ -117,6 +124,10 @@ section {
         max-width: 100%;
     }
 
+    .footer * {
+        max-height: 2em;
+    }
+
 
 
 #left {
@@ -150,15 +161,54 @@ section {
 /* Medium */
 
 @media screen and (max-width: 980px) {
-    body {
-        background-color: yellow;
+    
+    #left {
+        min-width: 26%;
+    }
+
+    #middle {
+        max-width: 74%;
+    }
+
+    #right {
+        display: none;
     }
 }
 
 /* Small */
 
-@media screen and (max-width: 720px) {
-    body {
-        background-color: red;
+@media screen and (max-width: 820px) {
+    
+    #left {
+        min-width: 10%;
+    }
+
+    #middle {
+        max-width: 90%;
+    }
+
+    .menu-item span {
+        display: none;
+    }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 620px) {
+    
+    #left {
+        min-width: 10%;
+    }
+
+    .menu {
+        margin-right: 0.5em;
+    }
+
+    #middle {
+        max-width: 85%;
+    }
+
+    .menu-item span {
+        display: none;
     }
 }
