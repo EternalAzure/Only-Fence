@@ -92,6 +92,7 @@
                         </label>
                     </form>
                 </div>
+                {% for post in posts %}
                 <div class="post">
                     <div class="post-banner">
                         <img src="/static/logo.png">
@@ -104,46 +105,21 @@
                         </div>
                     </div>
                     <div class="content">
-                        Post 1 <br>
-                        Are you a Marvel or DC fan? @shiaswordgirl gets into the history of the Marvel <br> 
-                        Comics and covers the fascinating journey the publishing company has taken to <br>
-                        become the successful powerhouse that they are today. <br>
+                        {{post.text}} 
                         <br>
-                        For more historical facts from Shiaswordgirl watch OFTV: <br>
-                        of.tv/creators/shiaswordgirlonlyfans.com/shiaswordgirl / <br>
-                        <br>
-                        onlyfans.com/oftv <br>
+                        {% if post.image %}
+                            <br>
+                            <img src="image/{{post.id}}">
+                        {% endif %}
                     </div>
                     <div class="footer">
                         <img src="/static/footer.png">
+                        <a href="/delete/{{ post.id }}" id="delete_btn">
+                            <img src="/static/delete.png" style="max-height: 0.6m;">
+                        </a>
                     </div>
                 </div>
-                <div class="post">
-                    <div class="post-banner">
-                        <img src="/static/logo.png">
-                        <div style="margin-left: 0.5em;">
-                            <div class="box">
-                                <span>OnlyFens</span>
-                                <img src="/static/verified.png">
-                            </div>
-                            <span style="color: lightgray;">@onlyfens</span>
-                        </div>
-                    </div>
-                    <div class="content">
-                        Post 2 <br>
-                        Are you a Marvel or DC fan? @shiaswordgirl gets into the history of the Marvel <br> 
-                        Comics and covers the fascinating journey the publishing company has taken to <br>
-                        become the successful powerhouse that they are today. <br>
-                        <br>
-                        For more historical facts from Shiaswordgirl watch OFTV: <br>
-                        of.tv/creators/shiaswordgirlonlyfans.com/shiaswordgirl / <br>
-                        <br>
-                        onlyfans.com/oftv <br>
-                    </div>
-                    <div class="post-banner">
-                        footer
-                    </div>
-                </div>
+                {% endfor %}
             </section>
 
             <!-- Right -->

@@ -8,6 +8,11 @@ a {
     color: gray;
 }
 
+img {
+    object-fit: contain;
+    max-width:100%;
+}
+
 .feed {
     flex-direction: column;
     background-color: rgb(240, 240, 240);
@@ -121,7 +126,12 @@ section {
 
     .content {
         margin: 0.5em 0.5em;
-        max-width: 100%;
+        max-width: 80%;
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
     }
 
     .footer * {

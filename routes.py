@@ -10,18 +10,22 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    posts = db.get_posts()
+    return render_template("index.html", posts=posts)
 
 @app.route("/publish", methods=["POST"])
 def publish():
+    print("/publish")
     text = request.form["text"]
     image = request.files["file"]
     db.publish(text, image)
     return redirect("/")
 
-@app.route("/logo", methods=["GET"])
-def logo():
-    # TODO
-    image = db.select_logo()
-    if image: return image
-    return "No image"
+@app.route("/image/<int:id>")
+def image(id):
+    return db.get_image(id)
+
+@app.route("/delete/<int:id>")
+def delete(id):
+    db.delete_post(id)
+    return redirect("/")

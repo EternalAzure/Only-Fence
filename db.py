@@ -3,7 +3,6 @@
 
 from app import app
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import exc
 from os import getenv
 from flask import make_response
 
@@ -13,9 +12,15 @@ db = SQLAlchemy(app)
 
 def publish(text: str, image):
     id = _insert_post(text)
-    _insert_image(image, id)
+    name: str = image.filename
+    jpg = name.endswith(".jpg")
+    jpeg = name.endswith(".jpeg")
+    if not jpg and not jpeg:
+        return
+    _insert_image(image.read(), id)
 
 def _insert_image(data, posts_id):
+    if not data: return
     sql = "INSERT INTO images (data, posts_id) VALUES (:data, :posts_id)"
     db.session.execute(sql, {"data":data, "posts_id":posts_id})
     db.session.commit()
@@ -26,9 +31,24 @@ def _insert_post(text: str):
     db.session.commit()
     return resulting_id.fetchone()[0]
 
-def select_logo():
-    sql = "SELECT data FROM images WHERE r_id=:id" # TODO just example query
-    id = 1 # id would be known
+def get_posts():
+    sql = "SELECT posts.id as id, text, data FROM posts LEFT JOIN images ON posts.id = posts_id"
+    result = db.session.execute(sql)
+    data = result.fetchall()
+    posts = []
+    for d in data:
+        img = False
+        if d.data:
+            img = True
+        posts.append({
+            "id": d.id,
+            "text": d.text,
+            "image": img
+        })
+    return posts
+
+def get_image(id):
+    sql = "SELECT data FROM images WHERE posts_id=:id"
     result = db.session.execute(sql, {"id":id})
     try:
         data = result.fetchone()[0]
@@ -37,3 +57,8 @@ def select_logo():
         return response
     except TypeError:
         return None
+
+def delete_post(id: int):
+    sql = "DELETE FROM posts WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
