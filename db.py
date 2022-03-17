@@ -15,7 +15,8 @@ def publish(text: str, image):
     name: str = image.filename
     jpg = name.endswith(".jpg")
     jpeg = name.endswith(".jpeg")
-    if not jpg and not jpeg:
+    png = name.endswith(".png")
+    if not jpg and not jpeg and not png:
         return
     _insert_image(image.read(), id)
 
@@ -32,15 +33,15 @@ def _insert_post(text: str):
     return resulting_id.fetchone()[0]
 
 def get_posts():
-    print("INFO: get_posts()")
-    sql = "SELECT text, posts_id FROM posts LEFT JOIN images ON posts.id = posts_id"
+    sql = "SELECT posts.id, text, posts_id FROM posts LEFT JOIN images ON posts.id = posts_id"
     result = db.session.execute(sql)
     data = result.fetchall()
     posts = []
     for d in data:
         posts.append({
-            "id": d.posts_id,
-            "text": d.text
+            "id": d.id,
+            "text": d.text,
+            "img": d.posts_id
         })
     return posts
 

@@ -10,17 +10,14 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route("/")
 def index():
-    print("INFO: /index")
     posts = db.get_posts()
     return render_template("index.html", posts=posts)
 
 @app.route("/publish", methods=["POST"])
 def publish():
-    print("INFO: /publish")
     text = request.form["text"]
     image = request.files["file"]
     db.publish(text, image)
-    print("INFO: past publishing")
     return redirect("/")
 
 @app.route("/image/<int:id>")
