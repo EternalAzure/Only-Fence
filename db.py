@@ -32,6 +32,7 @@ def _insert_post(text: str):
     return resulting_id.fetchone()[0]
 
 def get_posts():
+    print("INFO: get_posts()")
     sql = "SELECT posts.id as id, text, data FROM posts LEFT JOIN images ON posts.id = posts_id"
     result = db.session.execute(sql)
     data = result.fetchall()

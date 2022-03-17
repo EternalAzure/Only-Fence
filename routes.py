@@ -10,6 +10,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route("/")
 def index():
+    print("INFO: /index")
     posts = db.get_posts()
     return render_template("index.html", posts=posts)
 
