@@ -16,10 +16,11 @@ def index():
 
 @app.route("/publish", methods=["POST"])
 def publish():
-    print("/publish")
+    print("INFO: /publish")
     text = request.form["text"]
     image = request.files["file"]
     db.publish(text, image)
+    print("INFO: past publishing")
     return redirect("/")
 
 @app.route("/image/<int:id>")

@@ -33,18 +33,14 @@ def _insert_post(text: str):
 
 def get_posts():
     print("INFO: get_posts()")
-    sql = "SELECT posts.id as id, text, data FROM posts LEFT JOIN images ON posts.id = posts_id"
+    sql = "SELECT text, posts_id FROM posts LEFT JOIN images ON posts.id = posts_id"
     result = db.session.execute(sql)
     data = result.fetchall()
     posts = []
     for d in data:
-        img = False
-        if d.data:
-            img = True
         posts.append({
-            "id": d.id,
-            "text": d.text,
-            "image": img
+            "id": d.posts_id,
+            "text": d.text
         })
     return posts
 
