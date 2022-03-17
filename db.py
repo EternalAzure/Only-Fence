@@ -7,7 +7,7 @@ from os import getenv
 from flask import make_response
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = getenv("HEROKU_POSTGRESQL_AQUA_URL")
 db = SQLAlchemy(app)
 
 def publish(text: str, image):
